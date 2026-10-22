@@ -15,7 +15,7 @@ Website: [aleksandragrechuta.com](https://aleksandragrechuta.com)
 | [Support triage automation](projects/01-support-triage-automation.md) | AI triage of a real support queue for a large online academy platform. Answers only from approved replies; sensitive cases go to a person | Live |
 | [B2B outreach pipeline](projects/02-b2b-outreach-pipeline.md) | Prospect research, personalised emails, follow-ups and AI-scored replies. Nothing is sent without approval | Live |
 | [E-commerce operations system](projects/03-ecommerce-operations-system.md) | One source of truth for orders, costs, production, stock and margins across three sales channels | Live |
-| [Website run by AI](projects/04-website-run-by-ai.md) | Shop analytics, attribution and scheduled AI routines for site checks and content | Live |
+| [Website run by AI](projects/04-website-run-by-ai.md) | Shop rebuilt fully in code (own theme, custom blocks, six languages), approval-gated deploys, AI routines for site checks and blog drafts | Live |
 | [AI image production system](projects/05-ai-image-production.md) | Brand rules, product fact sheets and a tested prompt library so AI images never change the real product | In use |
 | [AI job-search assistant](projects/06-job-search-assistant.md) | Imports job alerts, reads each role and drafts applications limited to verified facts | Live |
 
@@ -34,4 +34,4 @@ flowchart LR
 
 ## Tools used across these projects
 
-Python, TypeScript, Google Apps Script, SQL, REST APIs and webhooks · Claude and OpenAI APIs · Zendesk · Shopify, WooCommerce, GA4 · Google Sheets, Notion · GitHub Actions, Cloudflare Workers and D1 · Claude Code
+Python, TypeScript, Google Apps Script, SQL, REST APIs and webhooks · Claude and OpenAI APIs · Zendesk · WordPress block themes, WooCommerce, Shopify, GA4 · Google Sheets, Notion · GitHub Actions, Cloudflare Workers and D1 · Claude Code
