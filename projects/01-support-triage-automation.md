@@ -39,9 +39,20 @@ flowchart TD
 
 ## Results
 
-- Cleared the support backlog, roughly the workload of one full-time agent. Nobody was removed from a role.
-- Largest live run: 337 tickets with zero errors, 177 of them answered with approved replies.
-- No errors found in weekly quality audits.
+From 1 September to 22 October 2026, live runs only, from the system's own run log:
+
+| | September | October (to 22nd) | Total |
+|---|---|---|---|
+| New tickets handled | 972 | 660 | **1,632** |
+| Answered in full | 395 (41%) | 162 (25%) | **557 (34%)** |
+| Immediate first reply, then a person | 367 | 297 | **664 (41%)** |
+| Sent straight to a person (money, privacy, unclear) | 30 | 43 | **73 (4%)** |
+| Junk, duplicates and business mail filtered out | 180 | 158 | **338** |
+| Follow-ups sent | 27 | 158 | **185** |
+| Closed once the customer confirmed | 87 | 155 | **242** |
+
+- September includes clearing the backlog: the first live run over the whole queue handled 337 tickets with zero errors.
+- No errors found in weekly quality audits. Nobody was removed from a role.
 
 ## Incident review
 
