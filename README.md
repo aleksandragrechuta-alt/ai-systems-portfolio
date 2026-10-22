@@ -34,4 +34,4 @@ flowchart LR
 
 ## Tools used across these projects
 
-Python, TypeScript, Google Apps Script, SQL, REST APIs and webhooks · Claude and OpenAI APIs · Zendesk · WordPress block themes, WooCommerce, Shopify, GA4 · Google Sheets, Notion · GitHub Actions, Cloudflare Workers and D1 · Claude Code
+Python, TypeScript, Google Apps Script, SQL, REST APIs · Claude and OpenAI APIs · Zendesk · WordPress block themes, WooCommerce, Shopify, GA4 · Google Sheets, Notion · GitHub Actions, Cloudflare Workers and D1 · Claude Code
