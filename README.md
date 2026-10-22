@@ -12,7 +12,7 @@ Website: [aleksandragrechuta.com](https://aleksandragrechuta.com)
 
 | Project | What it does | Status |
 |---|---|---|
-| [Support triage automation](projects/01-support-triage-automation.md) | AI triage of a real support queue for a large online academy platform: 1,632 new tickets in its first 7 weeks, 75% answered or given a first reply at once. Answers only from approved replies; sensitive cases go to a person | Live |
+| [Support triage automation](projects/01-support-triage-automation.md) | AI triage of a real support queue for a large online academy platform: 1,632 new tickets from 1 Sep to 22 Oct 2026, 75% answered or given a first reply at once. Answers only from approved replies; sensitive cases go to a person | Live |
 | [B2B outreach pipeline](projects/02-b2b-outreach-pipeline.md) | Prospect research, personalised emails, follow-ups and AI-scored replies. Nothing is sent without approval | Live |
 | [E-commerce operations system](projects/03-ecommerce-operations-system.md) | One source of truth for orders, costs, production, stock and margins across three sales channels | Live |
 | [Website run by AI](projects/04-website-run-by-ai.md) | Shop rebuilt fully in code (own theme, custom blocks, six languages), approval-gated deploys, AI routines for site checks and blog drafts | Live |
