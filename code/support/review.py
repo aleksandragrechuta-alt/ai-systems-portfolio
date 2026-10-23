@@ -1,4 +1,4 @@
-"""Performance review: how the triage did, and what a person should look at first.
+"""Performance review: how the support automation did, and what a person should look at first.
 
 Reads the run history that run.py writes (live runs only, dry runs are left out)
 for any period, usually a week or a month, and compares it with the period before.

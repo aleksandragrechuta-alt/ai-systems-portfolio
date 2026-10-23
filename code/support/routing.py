@@ -1,4 +1,4 @@
-"""Routing rules for AI-assisted support triage (simplified sample, online-shop example).
+"""Routing rules for AI-assisted customer support (standalone version, online-shop example).
 
 A ticket goes through four steps:
 

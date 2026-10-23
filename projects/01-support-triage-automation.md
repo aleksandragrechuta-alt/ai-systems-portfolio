@@ -60,7 +60,7 @@ After a customer incident, I led a review of the full ticket history (1,995 tick
 
 ## Code
 
-A standalone version in Python, with tests, that follows this design and reproduces the results above: [code/triage](../code/triage/).
+A standalone version in Python, with tests, that follows this design and reproduces the results above: [code/support](../code/support/).
 
 ## Stack
 

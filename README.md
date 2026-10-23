@@ -6,7 +6,7 @@ The systems were designed by me and built with AI coding assistants (Claude Code
 
 The source code lives in private repositories, because it holds client and business data. This repository shows how each system works. Code walkthroughs are available on request in an interview.
 
-**Code:** [two systems in code](code/), in Python with tests: the [support triage](code/triage/) (filtering, safety rules, helpdesk API connection, run history and performance review, reproducing the live results) and the [outreach send rules](code/outreach/), copied from the live pipeline.
+**Code:** [CX automation in code](code/), in Python with tests. Two sides of customer communication: [answering](code/support/) (support automation with filtering, safety rules, the helpdesk API connection and a performance review, reproducing the live results) and [reaching out](code/outreach/) (the send rules of the outreach pipeline, copied from the live code).
 
 Website: [aleksandragrechuta.com](https://aleksandragrechuta.com)
 

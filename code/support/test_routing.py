@@ -1,4 +1,4 @@
-"""Tests for the routing rules. Run with: cd code/triage && python3 -m unittest -v"""
+"""Tests for the routing rules. Run with: cd code/support && python3 -m unittest -v"""
 
 import unittest
 

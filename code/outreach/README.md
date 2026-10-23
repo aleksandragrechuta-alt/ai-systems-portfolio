@@ -1,6 +1,6 @@
-# Outreach send rules: an excerpt of the live code
+# Reaching out: outreach send rules, an excerpt of the live code
 
-These are the rules that decide when an email from my [B2B outreach pipeline](../../projects/02-b2b-outreach-pipeline.md) may go out, and how the inbox is read afterwards. Unlike the [support triage code](../triage/), this is **copied from the live pipeline** (v6, running hourly on GitHub Actions since September 2026). It was built with an AI coding assistant, like all my systems.
+This is the reaching-out side of my [CX automation](../): the rules that decide when an email from my [B2B outreach pipeline](../../projects/02-b2b-outreach-pipeline.md) may go out, and how the inbox is read afterwards. Unlike the [support code](../support/), this is **copied from the live pipeline** (v6, running hourly on GitHub Actions since September 2026). It was built with an AI coding assistant, like all my systems.
 
 The full pipeline is about 2,600 lines and stays private, because it works on real contacts. This excerpt contains only the functions below, unchanged apart from one shortened comment, plus one short function (`send_decision`) that shows the order of the checks without the Google Sheets and mail-server calls.
 

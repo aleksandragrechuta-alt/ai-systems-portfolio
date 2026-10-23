@@ -1,4 +1,4 @@
-"""One triage run: read open tickets, route each one, act, and log the result.
+"""One support run: read open tickets, route each one, act, and log the result.
 
 A dry run (the default) decides everything but changes nothing in the
 helpdesk, so the decisions can be reviewed before a live run.

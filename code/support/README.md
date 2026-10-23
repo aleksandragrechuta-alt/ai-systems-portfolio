@@ -1,6 +1,6 @@
-# Support triage: how it works, in code
+# Answering customers: support automation in code
 
-This is a small, standalone version of the [support triage automation](../../projects/01-support-triage-automation.md) I run on a live support queue for a large online academy platform. From 1 September to 22 October 2026 that system handled **1,632 new tickets**, and **75% were answered or given a first reply at once**.
+This is the answering side of my [CX automation](../): a small, standalone version of the [support automation](../../projects/01-support-triage-automation.md) I run on a live support queue for a large online academy platform. From 1 September to 22 October 2026 that system handled **1,632 new tickets**, and **75% were answered or given a first reply at once**.
 
 The production code is private because it holds client data. This version was written for this portfolio with an AI coding assistant, the same way I build the production system. It follows the same design and reproduces the same numbers, but it uses an online shop as the example, and every ticket and reply in it is made up.
 
@@ -126,7 +126,7 @@ September includes clearing the old backlog: the first live run over the whole q
 |---|---|
 | [`routing.py`](routing.py) | The rules: filtering, safety gates, checks on the AI's choice, closing signal, run report |
 | [`helpdesk_api.py`](helpdesk_api.py) | Helpdesk REST API client: paging, rate limits, retries, replies, internal notes, tags |
-| [`run.py`](run.py) | One triage run: read, spot duplicates, route, act (or dry run), save to the run history |
+| [`run.py`](run.py) | One run: read, spot duplicates, route, act (or dry run), save to the run history |
 | [`review.py`](review.py) | Performance review for any period, as data and as a Markdown report |
 | [`demo.py`](demo.py) | Reproduces the review with the live system's real totals |
 | [`test_routing.py`](test_routing.py) | 20 tests for the rules |
@@ -138,7 +138,7 @@ September includes clearing the old backlog: the first live run over the whole q
 Python 3.10 or newer, no other packages needed:
 
 ```bash
-cd code/triage
+cd code/support
 python3 -m unittest -v   # 39 tests
 python3 demo.py          # the review with the real totals
 ```
