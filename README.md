@@ -6,6 +6,8 @@ The systems were designed by me and built with AI coding assistants (Claude Code
 
 The source code lives in private repositories, because it holds client and business data. This repository shows how each system works. Code walkthroughs are available on request in an interview.
 
+**Code sample:** [support triage routing rules](code-sample/triage/), a small standalone version of the rules that decide whether a ticket may be answered automatically or must go to a person, with tests (Python).
+
 Website: [aleksandragrechuta.com](https://aleksandragrechuta.com)
 
 ## Projects
