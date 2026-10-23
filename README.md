@@ -8,7 +8,7 @@ The source code lives in private repositories, because it holds client and busin
 
 **Code:** [CX automation in code](code/), in Python with tests. Two sides of customer communication: [answering](code/support/) (support automation with filtering, safety rules, the helpdesk API connection and a performance review, reproducing the live results) and [reaching out](code/outreach/) (the send rules of the outreach pipeline, copied from the live code).
 
-Website: [aleksandragrechuta.com](https://aleksandragrechuta.com)
+Website: [aleksandragrechuta.com](https://aleksandragrechuta.com) · LinkedIn: [linkedin.com/in/agrechuta](https://www.linkedin.com/in/agrechuta)
 
 ## Projects
 
