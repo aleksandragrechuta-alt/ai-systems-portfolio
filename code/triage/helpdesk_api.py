@@ -85,3 +85,10 @@ class HelpdeskClient:
             "ticket": {"comment": {"body": f"Held for a person: {reason}", "public": False},
                        "additional_tags": ["needs-person"]},
         })
+
+    def set_aside(self, ticket_id: str, reason: str) -> None:
+        """Junk or duplicate: an internal note and a tag, no reply, so it never reaches the person's view."""
+        self._request("PUT", f"/api/v2/tickets/{ticket_id}", {
+            "ticket": {"comment": {"body": f"Set aside: {reason}", "public": False},
+                       "additional_tags": ["filtered"]},
+        })

@@ -6,7 +6,7 @@ The systems were designed by me and built with AI coding assistants (Claude Code
 
 The source code lives in private repositories, because it holds client and business data. This repository shows how each system works. Code walkthroughs are available on request in an interview.
 
-**Code:** [AI-assisted support triage](code-sample/triage/), a small standalone version in Python with tests: the rules that decide whether a ticket is answered automatically or goes to a person, the helpdesk API connection (paging, rate limits, dry runs, run history) and the weekly performance review.
+**Code:** [two systems in code](code/), in Python with tests: the [support triage](code/triage/) (filtering, safety rules, helpdesk API connection, run history and performance review, reproducing the live results) and the [outreach send rules](code/outreach/), copied from the live pipeline.
 
 Website: [aleksandragrechuta.com](https://aleksandragrechuta.com)
 

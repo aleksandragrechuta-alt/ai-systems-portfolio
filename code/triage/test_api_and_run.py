@@ -65,8 +65,8 @@ class Client(unittest.TestCase):
 
 
 OPEN_TICKETS = (200, {"tickets": [
-    {"id": 1, "subject": "Where is my order?", "description": "I ordered on Monday."},
-    {"id": 2, "subject": "Refund", "description": "I want my money back."},
+    {"id": 1, "subject": "Where is my order?", "description": "I ordered on Monday.", "requester": "ana@example.com"},
+    {"id": 2, "subject": "Refund", "description": "I want my money back.", "requester": "ben@example.com"},
 ], "next_page": None})
 
 
@@ -96,6 +96,21 @@ class FullRun(unittest.TestCase):
         with sqlite3.connect(self.db) as db:
             rows = db.execute("SELECT ticket_id, action, reason FROM decisions ORDER BY ticket_id").fetchall()
         self.assertEqual(rows, [("1", "send", "approved reply order_tracking"), ("2", "hold", "protected: refund")])
+
+    def test_same_question_twice_is_answered_once(self):
+        tickets = (200, {"tickets": [
+            {"id": 1, "subject": "Where is my order?", "description": "Hi", "requester": "ana@example.com"},
+            {"id": 3, "subject": "RE: Where is my order?", "description": "Hello?", "requester": "ana@example.com"},
+        ], "next_page": None})
+        report = run(client(FakeHelpdesk([tickets])), ai, self.db)
+        self.assertEqual((report["sent"], report["filtered"]), (1, 1))
+
+    def test_filtered_ticket_gets_a_tag_and_no_reply(self):
+        fake = FakeHelpdesk([(200, {})])
+        client(fake).set_aside("4", "filtered: newsletter")
+        ticket = fake.requests[0][2]["ticket"]
+        self.assertFalse(ticket["comment"]["public"])
+        self.assertEqual(ticket["additional_tags"], ["filtered"])
 
 
 if __name__ == "__main__":

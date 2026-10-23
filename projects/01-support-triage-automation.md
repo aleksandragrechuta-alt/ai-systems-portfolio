@@ -58,6 +58,10 @@ From 1 September to 22 October 2026, live runs only, from the system's own run l
 
 After a customer incident, I led a review of the full ticket history (1,995 tickets) for refund confirmations that had never been verified. The findings became permanent safety checks in the system.
 
+## Code
+
+A standalone version in Python, with tests, that follows this design and reproduces the results above: [code/triage](../code/triage/).
+
 ## Stack
 
 Zendesk API · Claude API · SQLite (run history) · Notion (weekly review) · Claude Code

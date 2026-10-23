@@ -39,6 +39,10 @@ flowchart TD
 - **Brand voice is enforced.** Drafts are checked against a banned-words list before they can be approved.
 - **Inbox hygiene is automatic.** Bounces, auto-replies and opt-outs are handled without manual work.
 
+## Code
+
+The send rules, copied from the live pipeline, with tests: [code/outreach](../code/outreach/).
+
 ## Stack
 
 Python · Claude API · Google Sheets API · Gmail · GitHub Actions · Claude Code
