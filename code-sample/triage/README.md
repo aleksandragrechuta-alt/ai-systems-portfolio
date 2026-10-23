@@ -1,6 +1,6 @@
-# Code sample: AI-assisted support triage
+# Code: AI-assisted support triage (simplified)
 
-A small, standalone version of how the [support triage automation](../../projects/01-support-triage-automation.md) works: the rules that decide whether a ticket may be answered automatically or must go to a person, and the connection to the helpdesk that reads tickets, replies and keeps a run history.
+A small, standalone version of how the [support triage automation](../../projects/01-support-triage-automation.md) works: the rules that decide whether a ticket may be answered automatically or must go to a person, the connection to the helpdesk that reads tickets, replies and keeps a run history, and the weekly review that shows how it performed.
 
 The production system is private because it holds client data. This sample was written for this portfolio with an AI coding assistant, like the production code. It uses an online shop as the example, and all tickets, replies and knowledge-base entries are made up.
 
@@ -20,6 +20,8 @@ flowchart TD
     K -- passes --> S
     S --> LOG[(Run history<br/>SQLite)]
     H --> LOG
+    LOG --> REV[Weekly review:<br/>needs attention first,<br/>knowledge gaps, audit sample]
+    REV -. fixes .-> G
 ```
 
 ## What the rules guarantee
@@ -38,6 +40,46 @@ flowchart TD
 - **Held tickets get an internal note, never a public reply,** with the reason and a `needs-person` tag, so they appear in the person's view.
 - **Every decision is saved** to a SQLite run history with its reason, and each run returns a report listing every held ticket.
 
+## How performance is reviewed
+
+Every week, `review.py` turns the run history (live runs only) into a short report for the person who owns the queue:
+
+- **The headline numbers:** tickets, answered automatically, held for a person, and the change on last week.
+- **Needs attention first:** AI failures and AI choices the rules had to block, such as a reply or source that does not exist.
+- **Why tickets were held:** each reason with its count, so a rising one shows up early.
+- **Approved replies used:** which replies do the most work.
+- **Knowledge gaps:** questions the AI could not answer from the knowledge base, to add or improve an entry.
+- **Quality audit sample:** a random set of automatic answers for a person to re-read. The same week always gives the same sample, so the audit can be checked later.
+
+Example output:
+
+```text
+# Weekly review, week of 2026-10-12
+
+- Tickets: 6
+- Answered automatically: 3 (50%, +0 points on last week)
+- Held for a person: 3
+
+## Needs attention first
+- the AI call failed: 6
+
+## Why tickets were held
+- protected: refund: 1
+- AI unsure: 1
+- AI step failed: TimeoutError: 1
+
+## Approved replies used
+- order_tracking: 2
+
+## Knowledge gaps (questions to add to the knowledge base)
+- Tickets: 5
+
+## Quality audit: re-read these automatic answers
+- Tickets: 1, 3
+```
+
+What the review finds goes back into the system: a new approved reply, a better knowledge-base entry, or a new rule with a test.
+
 ## Files
 
 | File | What it is |
@@ -45,8 +87,10 @@ flowchart TD
 | [`routing.py`](routing.py) | The rules: safety gates, checks on the AI's choice, closing signal, run report |
 | [`helpdesk_api.py`](helpdesk_api.py) | Helpdesk REST API client (Zendesk-style endpoints): paging, rate limits, retries, replies and internal notes |
 | [`run.py`](run.py) | One triage run: read, route, act (or dry run), save to the run history |
+| [`review.py`](review.py) | Weekly review from the run history, as data and as a Markdown report |
 | [`test_routing.py`](test_routing.py) | 15 tests for the rules |
 | [`test_api_and_run.py`](test_api_and_run.py) | 8 tests for the API client and full runs, with a fake helpdesk instead of the network |
+| [`test_review.py`](test_review.py) | 7 tests for the weekly review |
 
 ## Run the tests
 
