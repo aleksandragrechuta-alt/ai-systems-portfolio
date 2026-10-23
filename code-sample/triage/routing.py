@@ -1,4 +1,4 @@
-"""Routing rules for AI-assisted support triage (simplified sample).
+"""Routing rules for AI-assisted support triage (simplified sample, online-shop example).
 
 A ticket goes through three steps:
 
@@ -21,16 +21,16 @@ from typing import Callable
 
 # Replies a person has written and approved. The AI can pick one, never edit it.
 APPROVED_REPLIES = {
-    "reset_password": "You can reset your password here: {reset_link}. The link is valid for 24 hours.",
-    "certificate_download": "Your certificate is in My Account > Certificates. You can download it as a PDF there.",
-    "course_access": "Your course is in My Account > My Courses. If it is not there, reply with the email you used to buy it.",
+    "order_tracking": "You can follow your order in My Account > Orders. The tracking link appears there as soon as the parcel leaves the warehouse.",
+    "size_exchange": "You can request a size exchange in My Account > Returns within 30 days of delivery. The new size ships once we receive the original pair.",
+    "return_policy": "Unused items can be returned within 30 days of delivery from My Account > Returns. You will receive a prepaid label by email.",
 }
 
 # Curated knowledge base: the only source a knowledge-base answer may use.
 KNOWLEDGE_BASE = {
-    "kb-001": "Courses stay available for as long as your membership is active.",
-    "kb-002": "Video lessons can be watched on desktop and in the mobile app.",
-    "kb-003": "Subtitles are available in English and Spanish for every lesson.",
+    "kb-001": "In-stock items ship within 1 to 2 business days. Delivery in the EU takes 1 to 3 business days.",
+    "kb-002": "Leather shoes can be cleaned with a soft dry cloth. Avoid water and direct heat.",
+    "kb-003": "Our shoes fit true to size. Between two sizes, choose the larger one.",
 }
 
 # Protected topics: always a person, whatever the AI would say.
@@ -38,7 +38,7 @@ PROTECTED_PATTERNS = {
     "refund": r"\brefund|money back|reembolso",
     "billing dispute": r"\bchargeback|dispute|charged twice|double charged",
     "unrecognised charge": r"didn'?t (make|authori[sz]e)|unrecogni[sz]ed charge|don'?t recogni[sz]e",
-    "lifetime membership": r"\blifetime\b",
+    "damaged or wrong item": r"\b(damaged|broken|defective|wrong item|wrong size sent)\b",
     "legal or privacy": r"\blawyer|legal action|gdpr|delete my data",
 }
 

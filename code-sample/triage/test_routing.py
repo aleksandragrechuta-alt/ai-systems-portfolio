@@ -15,7 +15,7 @@ def ai_must_not_run(ticket):
 
 class SafetyGates(unittest.TestCase):
     def test_refund_goes_to_a_person_before_the_ai(self):
-        ticket = Ticket("t1", "Refund please", "I want my money back for the course.")
+        ticket = Ticket("t1", "Refund please", "I want my money back for these boots.")
         decision = route(ticket, ai_must_not_run)
         self.assertEqual(decision.action, "hold")
         self.assertEqual(decision.reason, "protected: refund")
@@ -24,41 +24,41 @@ class SafetyGates(unittest.TestCase):
         ticket = Ticket("t2", "Charge", "I didn't authorize this payment on my card.")
         self.assertEqual(route(ticket, ai_must_not_run).reason, "protected: unrecognised charge")
 
-    def test_lifetime_membership_is_protected(self):
-        ticket = Ticket("t3", "Question", "I have a lifetime plan, can I add my partner?")
-        self.assertEqual(route(ticket, ai_must_not_run).reason, "protected: lifetime membership")
+    def test_damaged_item_is_protected(self):
+        ticket = Ticket("t3", "Order 1042", "The left shoe arrived damaged, the sole is coming off.")
+        self.assertEqual(route(ticket, ai_must_not_run).reason, "protected: damaged or wrong item")
 
     def test_very_frustrated_customer_is_protected(self):
-        ticket = Ticket("t4", "Login", "THIS IS THE THIRD TIME I WRITE AND NOBODY ANSWERS")
+        ticket = Ticket("t4", "Order", "THIS IS THE THIRD TIME I WRITE AND NOBODY ANSWERS")
         self.assertEqual(route(ticket, ai_must_not_run).reason, "protected: very frustrated customer")
 
 
 class ApprovedReplies(unittest.TestCase):
     def test_approved_reply_is_sent_unchanged(self):
-        ticket = Ticket("t5", "Password", "I forgot my password.")
-        decision = route(ticket, ai_returns(AIChoice("approved_reply", reply_id="reset_password")))
+        ticket = Ticket("t5", "Where is my order?", "I ordered on Monday, where is it?")
+        decision = route(ticket, ai_returns(AIChoice("approved_reply", reply_id="order_tracking")))
         self.assertEqual(decision.action, "send")
-        self.assertIn("reset your password", decision.reply)
+        self.assertIn("tracking link", decision.reply)
 
     def test_reply_id_the_ai_made_up_is_held(self):
-        ticket = Ticket("t6", "Password", "I forgot my password.")
-        decision = route(ticket, ai_returns(AIChoice("approved_reply", reply_id="free_month")))
+        ticket = Ticket("t6", "Where is my order?", "I ordered on Monday, where is it?")
+        decision = route(ticket, ai_returns(AIChoice("approved_reply", reply_id="free_shipping_code")))
         self.assertEqual(decision.action, "hold")
 
 
 class KnowledgeBaseAnswers(unittest.TestCase):
-    ticket = Ticket("t7", "Subtitles", "Are there Spanish subtitles?")
+    ticket = Ticket("t7", "Sizes", "I am between a 38 and a 39, which should I take?")
 
     def test_answer_with_a_real_source_is_sent(self):
-        choice = AIChoice("kb_answer", answer="Yes, every lesson has Spanish subtitles.", sources=["kb-003"])
+        choice = AIChoice("kb_answer", answer="Our shoes fit true to size, so between two sizes we recommend the 39.", sources=["kb-003"])
         self.assertEqual(route(self.ticket, ai_returns(choice)).action, "send")
 
     def test_answer_without_source_is_held(self):
-        choice = AIChoice("kb_answer", answer="Yes, every lesson has Spanish subtitles.")
+        choice = AIChoice("kb_answer", answer="Our shoes fit true to size, so we recommend the 39.")
         self.assertIn("no knowledge-base source", route(self.ticket, ai_returns(choice)).reason)
 
     def test_answer_with_invented_source_is_held(self):
-        choice = AIChoice("kb_answer", answer="Yes.", sources=["kb-999"])
+        choice = AIChoice("kb_answer", answer="Take the 39.", sources=["kb-999"])
         self.assertIn("unknown source", route(self.ticket, ai_returns(choice)).reason)
 
     def test_answer_promising_money_is_held(self):
@@ -66,7 +66,7 @@ class KnowledgeBaseAnswers(unittest.TestCase):
         self.assertEqual(route(self.ticket, ai_returns(choice)).action, "hold")
 
     def test_answer_revealing_the_automation_is_held(self):
-        choice = AIChoice("kb_answer", answer="As an AI, I can confirm subtitles exist.", sources=["kb-003"])
+        choice = AIChoice("kb_answer", answer="As an AI, I recommend the 39.", sources=["kb-003"])
         self.assertEqual(route(self.ticket, ai_returns(choice)).action, "hold")
 
 
@@ -75,7 +75,7 @@ class Failures(unittest.TestCase):
         def broken(ticket):
             raise TimeoutError
 
-        decision = route(Ticket("t8", "App", "Does the app work offline?"), broken)
+        decision = route(Ticket("t8", "Care", "How do I clean suede?"), broken)
         self.assertEqual((decision.action, decision.reason), ("hold", "AI step failed: TimeoutError"))
 
     def test_unsure_ai_holds_the_ticket(self):
@@ -94,7 +94,7 @@ class Closing(unittest.TestCase):
 class Report(unittest.TestCase):
     def test_report_lists_every_held_ticket_with_its_reason(self):
         report = run_report([
-            Decision("a", "send", "approved reply reset_password"),
+            Decision("a", "send", "approved reply order_tracking"),
             Decision("b", "hold", "protected: refund"),
         ])
         self.assertEqual((report["sent"], report["held_for_a_person"]), (1, 1))
